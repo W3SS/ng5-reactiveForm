@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import {ReactiveFormsModule } from '@angular/forms';
+
 import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,6 +13,8 @@ import { HomeComponent } from './ram/home/home.component';
 import { ProductComponent } from './ram/product/product.component';
 import { ContactComponent } from './ram/contact/contact.component';
 import { PageNotFoundComponent } from './ram/page-not-found/page-not-found.component';
+import { SignUpFormComponent } from './ram/sign-up-form/sign-up-form.component';
+import { RegisterClientComponent } from './ram/register-client/register-client.component';
 
 
 
@@ -22,7 +26,9 @@ import { PageNotFoundComponent } from './ram/page-not-found/page-not-found.compo
     HomeComponent,
     ProductComponent,
     ContactComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SignUpFormComponent,
+    RegisterClientComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +36,13 @@ import { PageNotFoundComponent } from './ram/page-not-found/page-not-found.compo
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'product', component: ProductComponent },
+      { path: 'sign-up', component: SignUpFormComponent },
+      { path: 'client-register', component: RegisterClientComponent },
       { path: 'contact', component: ContactComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
-    ])
+    ]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

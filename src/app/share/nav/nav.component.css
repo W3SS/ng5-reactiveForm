@@ -1,0 +1,22 @@
+.custom-navigation.navbar-default {
+    background-color: #3097D1;
+    border-radius: 0;
+    border-bottom: 3px solid #2579a9;
+    margin-bottom: 20px;
+}
+
+.custom-navigation.navbar-default .navbar-nav>li>a,
+.custom-navigation.navbar-default .navbar-brand{
+    color: #fff;
+}
+.custom-navigation.navbar-default .navbar-nav>.active>a, 
+.custom-navigation.navbar-default .navbar-nav>.active>a:focus, 
+.custom-navigation.navbar-default .navbar-nav>.active>a:hover{
+    color: #fff;
+    background-color: #2881b3;
+}
+.custom-navigation.navbar-default .navbar-nav>li>a:focus, 
+.custom-navigation.navbar-default .navbar-nav>li>a:hover {
+    color: #fff;
+    background-color: transparent;
+}

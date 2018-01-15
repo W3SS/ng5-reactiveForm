@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {ProductServiceService} from '../product-service.service';
+import { ProductServiceService } from '../product-service.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,12 +9,12 @@ import {ProductServiceService} from '../product-service.service';
 })
 export class ProductListComponent implements OnInit {
 
-  pageTitle:string = 'The highest-grossing Bollywood films released in 2017, by worldwide box office gross revenue';
-  title:string = 'Highest worldwide gross of 2017';
-  listFilter:string = 'My list';
+  pageTitle: string = 'The highest-grossing Bollywood films released in 2017, by worldwide box office gross revenue';
+  title: string = 'Highest worldwide gross of 2017';
+  listFilter: string = '';
 
-  imgwidth:number = 100;
-  imgHeight:number = 150;
+  imgwidth: number = 100;
+  imgHeight: number = 150;
   // https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2017
   // moviesList = [
   //   {
@@ -89,8 +89,8 @@ export class ProductListComponent implements OnInit {
   //   },
 
   // ]
-  moviesList:any[];
-  constructor(private productService:ProductServiceService) { }
+  moviesList: any[];
+  constructor(private productService: ProductServiceService) { }
 
   ngOnInit() {
     this.productService.getProducts()
@@ -101,4 +101,8 @@ export class ProductListComponent implements OnInit {
       error => console.log('Get product error message'));
   }
 
+  onRatingClicked(message: string): void {
+    let ratingItemClick = 'Product List: ' + message;
+    console.log(ratingItemClick)
+  }
 }

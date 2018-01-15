@@ -1,0 +1,55 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div class="row">
+          <div class="col-sm-12">
+            
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <span class="">{{moviesDetails.title}}</span> 
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img 
+                                [src]="moviesDetails.img" 
+                                [alt]="moviesDetails.title" 
+                                [title]="moviesDetails.title"
+                                [ngStyle]="{'width':imgwidth+'%'}" />
+                        </div>
+                        <div class="col-md-8">
+                            <h3>{{moviesDetails.title}}</h3>
+                            <h4>{{moviesDetails.distributor}}</h4>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="panel-footer clearfix">
+                    <strong> {{moviesDetails.worldwideGross | currency:'₹ '}} crore</strong> 
+                    <span class="pull-right" tooltip="Rating 5">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <div class='panel-footer'>
+        <a class='btn btn-default' (click)='onBack()'>
+            <i class='glyphicon glyphicon-chevron-left'></i> Back to movies list
+        </a>
+        <a tooltip="Remove" class='btn btn-primary pull-right' (click)='onTrash()' style="margin-left:10px;">
+            <i class='glyphicon fa fa-trash'></i>
+        </a>
+        <a tooltip="Edit" class='btn btn-primary pull-right' (click)='onEdit()'>
+            <i class='glyphicon fa fa-edit'></i>
+        </a>
+    </div>
+  </div>

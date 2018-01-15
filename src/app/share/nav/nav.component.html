@@ -1,41 +1,48 @@
 <nav class="navbar navbar-default navbar-static-top custom-navigation">
   <div class="container">
       <div class="navbar-header">
+            <button type="button" class="navbar-toggle x" [ngClass]="{ 'collapsed': !isIn  }" (click)="toggleState()">
+               <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
           <!-- <a class="navbar-brand">
             Logo
           </a> -->
           <span class="navbar-brand">NG5 + Bootstrap</span>
       </div>
-      <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']"> 
-            <a [routerLink]="['/home']">Home</a> 
-        </li>
-        <li [routerLinkActive]="['active']"> 
-            <a [routerLink]="['/product']">Product</a> 
-        </li>
-        <li [routerLinkActive]="['active']"> 
-            <a [routerLink]="['/sign-up']">Sign Up</a> 
-        </li>
-        <li [routerLinkActive]="['active']"> 
-            <a [routerLink]="['/client-register']">Client Register</a> 
-        </li>
-        <li [routerLinkActive]="['active']"> 
-            <a [routerLink]="['/contact']">Contact</a> 
-        </li>
-          <!-- <li><a href="#">Link</a></li>
-          <li class="dropdown" dropdown> 
-              <a dropdownToggle role="button"> 
-                Dropdown <span class="caret"></span></a>
-              <ul *dropdownMenu class="dropdown-menu"> 
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
-              </ul>
-          </li> -->
-      </ul>
+      <div id="navbar" class="navbar-collapse collapse out in2" [ngClass]="{ 'in2'  : isIn  }">
+        <ul class="nav navbar-nav">
+            <li [routerLinkActive]="['active']"> 
+                <a [routerLink]="['/home']" (click)="closeMenu()">Home</a> 
+            </li>
+            <li [routerLinkActive]="['active']"> 
+                <a [routerLink]="['/product']" (click)="closeMenu()">Product</a> 
+            </li>
+            <li [routerLinkActive]="['active']"> 
+                <a [routerLink]="['/sign-up']" (click)="closeMenu()">Sign Up</a> 
+            </li>
+            <li [routerLinkActive]="['active']"> 
+                <a [routerLink]="['/client-register']" (click)="closeMenu()"> Client Register</a> 
+            </li>
+            <li [routerLinkActive]="['active']"> 
+                <a [routerLink]="['/contact']" (click)="closeMenu()">Contact</a> 
+            </li>
+            <!-- <li><a href="#">Link</a></li>
+            <li class="dropdown" dropdown> 
+                <a dropdownToggle role="button"> 
+                    Dropdown <span class="caret"></span></a>
+                <ul *dropdownMenu class="dropdown-menu"> 
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
+            </li> -->
+        </ul>
+    </div>
   </div>
 </nav>

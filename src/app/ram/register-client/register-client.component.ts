@@ -72,7 +72,11 @@ export class RegisterClientComponent implements OnInit {
     pattern:  'Please enter a valid email address.',
     minlength: 'Please enter at least 4 characters.'
   };
+  
 
+  get addresses(): FormArray{
+    return <FormArray>this.customerForm.get('addresses');
+}
 
   constructor(private fb: FormBuilder) { }
 
@@ -88,7 +92,8 @@ export class RegisterClientComponent implements OnInit {
       phone: '',
       sendOtp: 'email',
       rating: ['', ratingRange(1, 5)],
-      sendCatalog: [true]
+      sendCatalog: [false],
+      addresses: this.fb.array([ this.buildAddress() ])
 
     })
 
@@ -105,6 +110,22 @@ export class RegisterClientComponent implements OnInit {
       this.setMessage(emailControl)
     });
   }
+
+  // build address box 
+  addAddress(): void {
+    this.addresses.push(this.buildAddress());
+}
+
+buildAddress(): FormGroup {
+    return this.fb.group({
+            addressType: 'home',
+            street1: '',
+            street2: '',
+            city: '',
+            state: '',
+            zip: ''
+    });
+}
 
   // set Message
   setMessage(c: AbstractControl): void {

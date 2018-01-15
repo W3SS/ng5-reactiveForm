@@ -1,0 +1,7 @@
+.view-detail{
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 20px;
+    color: #fff;
+}

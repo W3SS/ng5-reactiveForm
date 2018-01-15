@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{pageTitle}}</div>  
+        <div class="panel-body">
+          <div class='row'>
+              <div class="col-md-12">
+                  <form class="form-horizontal">
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="listFilter">Filter by:</label>
+                        <div class="col-sm-6">
+                            <input type="text" [(ngModel)]='listFilter' name="list-filter" class="form-control" id="listFilter" placeholder="Search key">
+                        </div>
+                      </div>
+                    </form>
+              </div>
+          </div>
+          <div class='row'>
+              <div class='col-md-6'>
+                  <h4>Filtered by: {{listFilter}} </h4>
+              </div>
+          </div>
+          <div class='table-responsive' *ngIf="moviesList && moviesList.length">
+            <h5>{{title}}</h5>
+            <div class="col-md-4" *ngFor="let item of moviesList">
+              <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <span class="">{{item.title}}</span> 
+                    <a [routerLink]="['/product', item.rank]" tooltip="View Details   {{item.title}}" class="view-detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <a [routerLink]="['/product', item.rank]"><img [src]="item.img" [width]="imgwidth" [height]="imgHeight"  [alt]="item.title" [title]="item.title" /></a>
+                          </div>
+                          <div class="col-md-8">
+                              <h3>{{item.title}}</h3>
+                              <h4>{{item.distributor}}</h4>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="panel-footer clearfix">
+                      <strong> {{item.worldwideGross | currency:'₹ '}} crore</strong> 
+                      <span class="pull-right" tooltip="Rating 5">
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                      </span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

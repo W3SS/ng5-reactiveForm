@@ -25,17 +25,32 @@
               <div class="col-md-4" *ngFor="let item of moviesList | searchFilter : listFilter">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                      <span class="">{{item.title}}</span> 
-                      <a [routerLink]="['/product', item.rank]" tooltip="View Details   {{item.title}}" class="view-detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                      <span class="">{{item.title | capitalizeFirst : true}}</span> 
+                      <a [routerLink]="['/product', item.id]" tooltip="View Details   {{item.title}}" class="view-detail"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <a [routerLink]="['/product', item.rank]"><img [src]="item.img" [width]="imgwidth" [height]="imgHeight"  [alt]="item.title" [title]="item.title" /></a>
+                                <a [routerLink]="['/product', item.id]"><img [src]="item.img" [width]="imgwidth" [height]="imgHeight"  [alt]="item.title" [title]="item.title" /></a>
                             </div>
                             <div class="col-md-8">
-                                <h3>{{item.title}}</h3>
-                                <h4>{{item.distributor}}</h4>
+                                <ul class="data-list">
+                                    <li>
+                                        <span class="head-text">Name:-</span>
+                                        <span class="body-text">{{item.title | capitalizeFirst : true}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="head-text">Distributor:-</span>
+                                        <span class="body-text">{{item.distributor | capitalizeFirst}}</span>
+                                    </li>
+                                    <li *ngIf="item.tags">
+                                        <span class="head-text">Tags:-</span>
+                                        <span class="body-text" *ngFor="let tag of item.tags">
+                                            <span class="tag">{{tag | capitalizeFirst}}</span>
+                                        </span>
+                                    </li>
+                                    
+                                </ul>
                             </div>
                         </div>
                         

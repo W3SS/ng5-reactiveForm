@@ -27,6 +27,7 @@ import { ProductAddEditComponent } from './ram/product/product-add-edit/product-
 import { ProductServiceService } from './ram/product/product-service.service';
 import { SearchFilterPipe } from './share/custome/filter.pipe';
 import { StarRatingComponent } from './share/star-rating-component/star-rating-component';
+import { CapitalizePipe } from './share/custome/capitalizefirst.pipe';
 
 
 
@@ -44,6 +45,7 @@ import { StarRatingComponent } from './share/star-rating-component/star-rating-c
     ProductDetailsComponent,
     ProductAddEditComponent,
     SearchFilterPipe,
+    CapitalizePipe,
     StarRatingComponent
   ],
   imports: [
@@ -55,6 +57,7 @@ import { StarRatingComponent } from './share/star-rating-component/star-rating-c
       { path: 'home', component: HomeComponent },
       { path: 'product', component: ProductListComponent },
       { path: 'product/:id', component: ProductDetailsComponent },
+      { path: 'product/:edit/:id', component: ProductAddEditComponent },
       { path: 'sign-up', component: SignUpFormComponent },
       { path: 'client-register', component: RegisterClientComponent },
       { path: 'contact', component: ContactComponent },

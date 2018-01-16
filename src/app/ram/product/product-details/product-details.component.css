@@ -1,0 +1,36 @@
+.view-detail{
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 20px;
+    color: #fff;
+}
+.data-list, .data-list li{
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0;
+    font-size: 12px;
+}
+.data-list li > span{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.data-list li .head-text {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.data-list li + li {
+    border-top:solid 1px rgba(0,0,0,0.1);
+}
+.data-list li .body-text .tag{
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 5px;
+    color: #fff;
+    background: #337ab7;
+    margin: 2px;
+    padding: 3px 8px;
+    font-size: 11px;
+    letter-spacing: .5px;
+}

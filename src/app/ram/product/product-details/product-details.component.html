@@ -1,44 +1,88 @@
 <div class='panel panel-primary'>
     <div class='panel-heading'>
-        {{pageTitle}}
+         <!-- {{pageTitle}}  -->
+         <span *ngIf="moviesDetails">{{moviesDetails.title | capitalizeFirst : true}}</span>
     </div>
     <div class='panel-body'>
         <div class="row">
-          <div class="col-sm-12">
-            
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <span class="">{{moviesDetails.title}}</span> 
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img 
-                                [src]="moviesDetails.img" 
-                                [alt]="moviesDetails.title" 
-                                [title]="moviesDetails.title"
-                                [ngStyle]="{'width':imgwidth+'%'}" />
-                        </div>
-                        <div class="col-md-8">
-                            <h3>{{moviesDetails.title}}</h3>
-                            <h4>{{moviesDetails.distributor}}</h4>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="panel-footer clearfix">
-                    <strong> {{moviesDetails.worldwideGross | currency:'₹ '}} crore</strong> 
-                    <span class="pull-right" tooltip="Rating 5">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </span>
-                </div>
-            </div>
+            <div class="col-sm-12">
 
-          </div>
+                <div class="panel panel-primary" *ngIf="moviesDetails">
+                    
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img [src]="moviesDetails.img" [alt]="moviesDetails.title" [title]="moviesDetails.title" [ngStyle]="{'width':imgwidth+'%'}"
+                                />
+                            </div>
+                            <div class="col-md-8">
+                                <ul class="data-list">
+                                    <li>
+                                        <span class="head-text">Rank:-</span>
+                                        <span class="body-text">{{moviesDetails.rank}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="head-text">Name:-</span>
+                                        <span class="body-text">{{moviesDetails.title | capitalizeFirst : true}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="head-text">Distributor:-</span>
+                                        <span class="body-text">{{moviesDetails.distributor | capitalizeFirst}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.tags">
+                                        <span class="head-text">Tags:-</span>
+                                        <span class="body-text" *ngFor="let tag of moviesDetails.tags">
+                                            <span class="tag">{{tag | capitalizeFirst}}</span>
+                                        </span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.directedBy">
+                                        <span class="head-text">Directed By:-</span>
+                                        <span class="body-text">{{moviesDetails.directedBy}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.producedBy">
+                                        <span class="head-text">Produced By:-</span>
+                                        <span class="body-text">{{moviesDetails.producedBy}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.storyBy">
+                                        <span class="head-text">Story By:-</span>
+                                        <span class="body-text">{{moviesDetails.storyBy}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.starring">
+                                        <span class="head-text">Starring:-</span>
+                                        <span class="body-text">{{moviesDetails.starring}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.releaseDate">
+                                        <span class="head-text">Release Date:-</span>
+                                        <span class="body-text">{{moviesDetails.releaseDate}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.runningTime">
+                                        <span class="head-text">Running Timee:-</span>
+                                        <span class="body-text">{{moviesDetails.runningTime}}</span>
+                                    </li>
+                                    <li *ngIf="moviesDetails.budget">
+                                        <span class="head-text">Budget:-</span>
+                                        <span class="body-text">{{moviesDetails.budget}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <strong> {{moviesDetails.worldwideGross | currency:'₹ '}} crore</strong>
+                         <span class="pull-right" [tooltip]="moviesDetails.rating">
+                            <!-- <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i> -->
+                            <star-rating [rating]='moviesDetails.rating'></star-rating>
+                        </span> 
+                        
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <div class='panel-footer'>
@@ -52,4 +96,4 @@
             <i class='glyphicon fa fa-edit'></i>
         </a>
     </div>
-  </div>
+</div>

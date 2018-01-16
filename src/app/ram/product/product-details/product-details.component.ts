@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Subscription }       from 'rxjs/Subscription';
+
+import { ProductServiceService } from '../product-service.service';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -10,31 +14,40 @@ export class ProductDetailsComponent implements OnInit {
   pageTitle:string = 'Page Title ';
   rank:number;
   imgwidth:number = 100;
-
-  moviesDetails =
-    {
-      'rank':this.rank,
-      'title':'Tiger Zinda Hai',
-      'distributor':'Yash Raj Films',
-      'worldwideGross':'504.75',
-      'img': 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Tiger_Zinda_Hai_-_Poster.jpg/220px-Tiger_Zinda_Hai_-_Poster.jpg',
-      'DirectedBy':'Ali Abbas Zafar',
-      'ProducedBy' : 'Aditya Chopra',
-      'StoryBy' : 'Ali Abbas Zafar,Neelesh Misra',
-      'Starring' : 'Salman Khan,Katrina Kaif',
-      'ReleaseDate' : '22 December 2017',
-      'Running time' : '161 minutes',
-      'Budget' : '210'
-    }
+  errorMessage: string;
+  moviesDetails:any[];
+  private sub:Subscription;
+ 
   
 
   constructor(
     private _route: ActivatedRoute,
-    private _router: Router) { }
+    private _router: Router,
+    private _service : ProductServiceService) { }
 
   ngOnInit() {
     this.rank = +this._route.snapshot.paramMap.get('id');
     this.pageTitle += `: ${this.rank}`;
+
+    // here get product details id 
+    this.sub = this._route.params.subscribe(
+        params => {
+            let id = +params['id'];
+            this.getProductDetail(id);
+    });
+    
+    
+
+  }
+
+  
+  getProductDetail(id: number) {
+      this._service.getProductDetail(id).subscribe(
+          data => {
+            console.log(data);
+            this.moviesDetails = data;
+          },
+          error => this.errorMessage = <any>error);
   }
 
   onBack():void{
@@ -45,6 +58,6 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.rank);
   }
   onEdit():void{
-    console.log('edit click');
+    this._router.navigate(['/product/edit', this.rank]);
   }
 }

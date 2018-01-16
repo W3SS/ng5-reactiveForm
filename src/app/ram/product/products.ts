@@ -8,4 +8,11 @@ export interface IProduct {
     worldwideGross: string;
     img: string;
     rating : number;
+    directedBy ?:string;
+    producedBy?:string;
+    storyBy?:string;
+    starring?:string;
+    releaseDate?:string;
+    runningTime?:string;
+    budget?:string;
 }

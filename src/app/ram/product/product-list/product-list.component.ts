@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   listFilter: string = '';
 
   imgwidth: number = 100;
-  imgHeight: number = 150;
+  imgHeight: number = 180;
   // https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2017
   // moviesList = [
   //   {

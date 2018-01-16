@@ -25,6 +25,8 @@ import { ProductAddEditComponent } from './ram/product/product-add-edit/product-
  import { ProductDataInMemory }  from '../app/ram/product/product-data-in-memory';
 
 import { ProductServiceService } from './ram/product/product-service.service';
+import { SearchFilterPipe } from './share/custome/filter.pipe';
+import { StarRatingComponent } from './share/star-rating-component/star-rating-component';
 
 
 
@@ -40,7 +42,9 @@ import { ProductServiceService } from './ram/product/product-service.service';
     RegisterClientComponent,
     ProductListComponent,
     ProductDetailsComponent,
-    ProductAddEditComponent
+    ProductAddEditComponent,
+    SearchFilterPipe,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,31 +1,187 @@
 <div class='panel panel-primary'>
     <div class='panel-heading'>
-          <span *ngIf="moviesDetails">Edit Movie {{moviesDetails.title | capitalizeFirst : true}} </span>  
+        <span *ngIf="moviesDetails">Edit Movie {{moviesDetails.title | capitalizeFirst : true}} </span>
     </div>
     <div class='panel-body'>
         <div class="row">
             <div class="col-sm-12">
 
-                <form class="form-horizontal">
-                  <fieldset>
-                    <div class="form-group">
-                      <label class="col-md-2">kujer</label>
-                      <div class="col-md-8">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </fieldset>
+                <form class="form-horizontal" novalidate (ngSubmit)="formUpdate()" [formGroup]="movieForm">
+                    <fieldset>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.title}">
+                            <label class="col-md-2" for="movieName">Movie Name:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                    formControlName="title"  
+                                    placeholder="Name (required)"  
+                                    id="movieName" 
+                                    class="form-control" />
+                                    <span class="help-block" *ngIf="displayMessage.title">
+                                            {{displayMessage.title}}
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.distributor}">
+                            <label class="col-md-2" for="distributor">Distributor:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id="distributor" 
+                                class="form-control"
+                                formControlName="distributor"
+                                placeholder="Distributor Name (required)"  />
+                                <span class="help-block" *ngIf="displayMessage.distributor">
+                                    {{displayMessage.distributor}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.directedBy}">
+                            <label class="col-md-2" for="directedBy">Directed By:-</label>
+                            <div class="col-md-8">
+                                <input type="text"
+                                 id="directedBy" 
+                                 formControlName="directedBy"
+                                 placeholder="Directored By (required)"
+                                 class="form-control" />
+                                 <span class="help-block" *ngIf="displayMessage.directedBy">
+                                     {{displayMessage.directedBy}}
+                                 </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.producedBy}">
+                            <label class="col-md-2" for="producedBy">Produced By:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id="producedBy" 
+                                class="form-control"
+                                formControlName="producedBy"
+                                placeholder="Produced By (required)" />
+                                <span class="help-block" *ngIf="displayMessage.producedBy">
+                                    {{displayMessage.producedBy}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.storyBy}">
+                            <label class="col-md-2" for="storyBy">Story By:-</label>
+                            <div class="col-md-8">
+                                <input type="text"
+                                 id="storyBy"
+                                 formControlName="storyBy"
+                                 placeholder="Story By (required)"
+                                 class="form-control" />
+                                 <span class="help-block" *ngIf="displayMessage.storyBy">
+                                     {{displayMessage.storyBy}}
+                                 </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.starring}">
+                            <label class="col-md-2" for="starring">Starring:-</label>
+                            <div class="col-md-8">
+                                <input type="text"
+                                 id="starring"
+                                 formControlName="starring"
+                                 placeholder="Starring (required)"
+                                  class="form-control" />
+                                  <span class="help-block" *ngIf="displayMessage.starring">
+                                      {{displayMessage.starring}}
+                                  </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.releaseDate}">
+                            <label class="col-md-2" for="releaseDate">Release Date:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id="releaseDate" 
+                                formControlName="releaseDate"
+                                placeholder="Release Date (required)"
+                                class="form-control" />
+                                <span class="help-block" *ngIf="displayMessage.releaseDate">
+                                    {{displayMessage.releaseDate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.runningTime}">
+                            <label class="col-md-2" for="runningTime">Running Timee:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id="runningTime" 
+                                formControlName="runningTime"
+                                placeholder="Running Time (required)"
+                                class="form-control" />
+                                <span class="help-block" *ngIf="displayMessage.runningTime">
+                                    {{displayMessage.runningTime}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.budget}">
+                            <label class="col-md-2" for="budget">Budget:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id="budget" 
+                                formControlName="budget"
+                                placeholder="Budget (required)"
+                                class="form-control" />
+                                <span class="help-block" *ngIf="displayMessage.budget">
+                                    {{displayMessage.budget}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.worldwideGross}">
+                            <label class="col-md-2" for="worldwideGross">World Wide Gross:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id="worldwideGross" 
+                                formControlName="worldwideGross"
+                                placeholder="Word Wide Gross (required)"
+                                class="form-control" />
+                                <span class="help-block" *ngIf="displayMessage.worldwideGross">
+                                    {{displayMessage.worldwideGross}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':displayMessage.rating}">
+                            <label class="col-md-2" for="rating">Rating:-</label>
+                            <div class="col-md-8">
+                                <input type="number" 
+                                id="rating" 
+                                formControlName="rating"
+                                placeholder="Rating 1 to 5 (required)"
+                                class="form-control" />
+                                <span class="help-block" *ngIf="displayMessage.rating">
+                                    {{displayMessage.rating}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2" for="">Tags:-</label>
+                            <div class="col-md-8">
+                                <input type="text" 
+                                id=""
+                                formControlName="tags" 
+                                placeholder="Tags"
+                                class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-2">
+                                <button [disabled]='!movieForm.valid' class="btn btn-primary pull-right" type="submit"><i class='fa fa-save'></i> Save</button>
+
+                                <button class="btn btn-default pull-left" type="button" style="margin-right:10px;" (click)='onBack()'><i class='fa fa-close'></i >Cancel</button>
+
+                                <button class="btn btn-danger pull-left" type="button" (click)='onTrash()'><i class='fa fa-trash'></i> Remove</button>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
 
             </div>
         </div>
     </div>
-    <div class='panel-footer'>
+    <!-- <div class='panel-footer'>
         <a class='btn btn-default' (click)='onBack()'>
             <i class='glyphicon glyphicon-chevron-left'></i> Cancel
         </a>
-        <!-- <a tooltip="Remove" class='btn btn-primary pull-right' (click)='onTrash()' style="margin-left:10px;">
+        <a tooltip="Remove" class='btn btn-primary pull-right' (click)='onTrash()' style="margin-left:10px;">
             <i class='glyphicon fa fa-trash'></i> Remove
-        </a> -->
-    </div>
+        </a>
+    </div> -->
 </div>

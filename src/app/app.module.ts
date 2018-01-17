@@ -31,6 +31,7 @@ import { CapitalizePipe } from './share/custome/capitalizefirst.pipe';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

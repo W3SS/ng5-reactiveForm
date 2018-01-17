@@ -28,6 +28,7 @@ import { ProductServiceService } from './ram/product/product-service.service';
 import { SearchFilterPipe } from './share/custome/filter.pipe';
 import { StarRatingComponent } from './share/star-rating-component/star-rating-component';
 import { CapitalizePipe } from './share/custome/capitalizefirst.pipe';
+import { ProductEditGuard } from './ram/product/product-guard.service';
 
 
 
@@ -58,7 +59,9 @@ import { CapitalizePipe } from './share/custome/capitalizefirst.pipe';
       { path: 'home', component: HomeComponent },
       { path: 'product', component: ProductListComponent },
       { path: 'product/:id', component: ProductDetailsComponent },
-      { path: 'product/:edit/:id', component: ProductAddEditComponent },
+      { path: 'product/:edit/:id',
+        canDeactivate : [ProductEditGuard],
+        component: ProductAddEditComponent },
       { path: 'sign-up', component: SignUpFormComponent },
       { path: 'client-register', component: RegisterClientComponent },
       { path: 'contact', component: ContactComponent },
@@ -70,7 +73,8 @@ import { CapitalizePipe } from './share/custome/capitalizefirst.pipe';
     FormsModule
   ],
   providers: [
-    ProductServiceService
+    ProductServiceService,
+    ProductEditGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -30,17 +30,43 @@ export class ProductServiceService {
     if (id === 0) {
       // return Observable.of(this.initializeProduct());
       return Observable.create((observer: any) => {
-          observer.next(this.initializeProduct());
-          observer.complete();
+        observer.next(this.initializeProduct());
+        observer.complete();
       });
     };
-      const url = `${this.baseUrl}/${id}`;
-      return this.http.get(url)
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get(url)
       .map(this.extractData)
       .do(data => console.log('getProductDetail: ' + JSON.stringify(data)))
       .catch(this.handleError);
-    
-    
+
+
+  }
+
+  // data update save service here
+  saveDetailsData(product: IProduct): Observable<IProduct> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    if (product.id === 0) {
+      return this.createList(product, options);
+    }
+    return this.updateList(product, options);
+  }
+
+  private createList(product: IProduct, options: RequestOptions): Observable<IProduct> {
+    product.id = undefined;
+    return this.http.post(this.baseUrl, product, options)
+      .map(this.extractData)
+      .do(data => console.log('createList: ' + JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+  private updateList(product: IProduct, options: RequestOptions): Observable<IProduct> {
+    const url = `${this.baseUrl}/${product.id}`;
+    return this.http.put(url, product, options)
+      .map(() => product)
+      .do(data => console.log('updateList: ' + JSON.stringify(data)))
+      .catch(this.handleError);
   }
 
 
@@ -59,22 +85,22 @@ export class ProductServiceService {
   initializeProduct(): IProduct {
     // Return an initialized object
     return {
-      id:0,
+      id: 0,
       rank: null,
       title: null,
       distributor: null,
       tags: [''],
       worldwideGross: null,
       img: null,
-      rating : null,
-      directedBy :null,
-      producedBy:null,
-      storyBy:null,
-      starring:null,
-      releaseDate:null,
-      runningTime:null,
-      budget:null
+      rating: null,
+      directedBy: null,
+      producedBy: null,
+      storyBy: null,
+      starring: null,
+      releaseDate: null,
+      runningTime: null,
+      budget: null
     };
-}
+  }
 
 }

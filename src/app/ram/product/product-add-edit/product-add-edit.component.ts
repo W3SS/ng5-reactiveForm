@@ -9,6 +9,7 @@ import 'rxjs/add/observable/merge';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
+import { IProduct } from '../products';
 import { ProductServiceService } from '../product-service.service';
 import { GenericValidatorForms } from '../../../share/custome/generic.validator.forms';
 import { NumberValidators } from '../../../share/custome/number.validators';
@@ -22,11 +23,11 @@ export class ProductAddEditComponent implements OnInit, AfterViewInit, OnDestroy
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-  pageTitle:string = 'Page Title ';
+  pageTitle:string = '';
   rank:number;
   imgwidth:number = 100;
   errorMessage: string;
-  moviesDetails:any[];
+  moviesDetails:IProduct;
   private sub:Subscription;
 
   movieForm:FormGroup;
@@ -35,6 +36,12 @@ export class ProductAddEditComponent implements OnInit, AfterViewInit, OnDestroy
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidatorForms;
+
+  get tags(): FormArray {
+      return <FormArray>this.movieForm.get('tags');
+  }
+
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -103,7 +110,7 @@ export class ProductAddEditComponent implements OnInit, AfterViewInit, OnDestroy
       budget:['', Validators.required],
       worldwideGross:['', Validators.required],
       rating:['', NumberValidators.range(1, 5)],
-      tags:['']
+      tags: this._fb.array([]),
 
     })
 
@@ -138,11 +145,48 @@ export class ProductAddEditComponent implements OnInit, AfterViewInit, OnDestroy
     this._service.getProductDetail(id).subscribe(
           data => {
             console.log(data);
-            this.moviesDetails = data;
+            
+            //this.moviesDetails = data;
+            this.onMovieRetrieved(data);
           },
           error => this.errorMessage = <any>error);
   }
 
+  onMovieRetrieved(data):void{
+    console.log(data);
+    // here set to data 
+    if (this.movieForm) {
+        this.movieForm.reset();
+    }
+    // here set to data fill 
+    this.moviesDetails = data;
+    
+    if (this.moviesDetails.id === 0) {
+        this.pageTitle = 'Add Movies ';
+    } else {
+        this.pageTitle = `Edit Movies: ${this.moviesDetails.title}`;
+    }
+
+    // Update the data on the form
+    this.movieForm.patchValue({
+        title: this.moviesDetails.title,
+        distributor: this.moviesDetails.distributor,
+        directedBy: this.moviesDetails.directedBy,
+        producedBy: this.moviesDetails.producedBy,
+        storyBy: this.moviesDetails.storyBy,
+        starring: this.moviesDetails.starring,
+        releaseDate: this.moviesDetails.releaseDate,
+        runningTime: this.moviesDetails.runningTime,
+        budget: this.moviesDetails.budget,
+        worldwideGross: this.moviesDetails.worldwideGross,
+        rating: this.moviesDetails.rating
+    });
+    this.movieForm.setControl('tags', this._fb.array(this.moviesDetails.tags || []));
+  }
+
+  addTag(): void {
+      this.tags.push(new FormControl());
+  }
   onBack():void{
     this._router.navigate(['/product']);
   }
@@ -153,7 +197,29 @@ export class ProductAddEditComponent implements OnInit, AfterViewInit, OnDestroy
 
   formUpdate() :void{
     console.log('click to form update ');
-    console.log(this.movieForm);
+   // console.log(this.movieForm);
+    if (this.movieForm.dirty && this.movieForm.valid) {
+        // Copy the form values over the product object values
+        let movieFormValue = Object.assign({}, this.moviesDetails, this.movieForm.value);
+
+        console.log(movieFormValue);
+        this._service.saveDetailsData(movieFormValue)
+            .subscribe(
+                () => this.onSaveComplete(),
+                (error: any) => this.errorMessage = <any>error
+            );
+    }
+     else if (!this.movieForm.dirty) {
+        this.onSaveComplete();
+    }
   }
+
+  onSaveComplete(): void {
+      console.log('save completed form call');
+      // Reset the form to clear the flags
+      this.movieForm.reset();
+      this._router.navigate(['/product']);
+  }
+
 
 }

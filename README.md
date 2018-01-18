@@ -1,3 +1,12 @@
+1. git clone contributed ram9953878727@gmail.com, http://www.rohitazad.com
+2. npm install
+3. npm start
+4. open to your browser http://localhost:4200/
+ now your application is run now . 
+ 
+ Enjoy the this demo for only learning purpose for demo.
+
+
 # Ng5ReactiveForm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
@@ -25,3 +34,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+contributed ram9953878727@gmail.com, http://www.rohitazad.com

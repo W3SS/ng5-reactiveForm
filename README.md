@@ -1,4 +1,4 @@
-1. git clone contributed ram9953878727@gmail.com, http://www.rohitazad.com
+1. git clone https://github.com/rohitazad/ng5-reactiveForm.git
 2. npm install
 3. npm start
 4. open to your browser http://localhost:4200/

@@ -70,6 +70,17 @@ export class ProductServiceService {
   }
 
 
+  // movies list remove based on id 
+  deleteMovie(id:number):Observable<Response> {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      const url = `${this.baseUrl}/${id}`;
+      return this.http.delete(url, options)
+          .do(data => console.log('deleteMovie: ' + JSON.stringify(data)))
+          .catch(this.handleError);
+  }
+
   private extractData(response: Response) {
     let body = response.json();
     return body.data || {};

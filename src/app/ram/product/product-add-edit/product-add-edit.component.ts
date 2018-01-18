@@ -190,9 +190,24 @@ export class ProductAddEditComponent implements OnInit, AfterViewInit, OnDestroy
   onBack():void{
     this._router.navigate(['/product']);
   }
+
+
   onTrash():void{
     console.log('trash click');
     console.log(this.rank);
+
+    if (this.moviesDetails.id === 0) {
+        // Don't delete, it was never saved.
+        this.onSaveComplete();
+  } else {
+        if (confirm(`Really delete the movie : ${this.moviesDetails.title}?`)) {
+            this._service.deleteMovie(this.moviesDetails.id)
+                .subscribe(
+                    () => this.onSaveComplete(),
+                    (error: any) => this.errorMessage = <any>error
+                );
+        }
+    }
   }
 
   formUpdate() :void{

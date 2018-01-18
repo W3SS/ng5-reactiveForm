@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { ProductServiceService } from '../product-service.service';
 
 @Component({
@@ -90,7 +90,9 @@ export class ProductListComponent implements OnInit {
 
   // ]
   moviesList: any[];
-  constructor(private productService: ProductServiceService) { }
+  constructor(private productService: ProductServiceService,
+    private _router: Router,      
+  ) { }
 
   ngOnInit() {
     this.productService.getProducts()
@@ -105,4 +107,10 @@ export class ProductListComponent implements OnInit {
     let ratingItemClick = 'Product List: ' + message;
     console.log(ratingItemClick)
   }
+
+  addNewOne(){
+    console.log('yes add to one');
+    this._router.navigate(['/product/edit/0']);
+  }
+
 }

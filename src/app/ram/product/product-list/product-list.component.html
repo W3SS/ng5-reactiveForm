@@ -19,6 +19,9 @@
                 <div class='col-md-6'>
                     <h4>Filtered by: {{listFilter}} </h4>
                 </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary pull-right" type="button" style="margin-right:10px;" (click)='addNewOne()'><i class='fa fa-vcard'></i > Add New Movie</button>
+                </div>
             </div>
             <div class='table-responsive' *ngIf="moviesList && moviesList.length">
               <h5>{{title}}</h5>

@@ -6,8 +6,13 @@
     <div class='panel-body'>
         <div class="row">
             <div class="col-sm-12">
+                    <button class="btn btn-primary pull-right" type="button" style="margin-right:10px;" (click)='addNewOne()'><i class='fa fa-vcard'></i > Add New Movie</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
 
-                <div class="panel panel-primary" *ngIf="moviesDetails">
+                <div class="" *ngIf="moviesDetails">
                     
                     <div class="panel-body">
                         <div class="row">
@@ -89,11 +94,8 @@
         <a class='btn btn-default' (click)='onBack()'>
             <i class='glyphicon glyphicon-chevron-left'></i> Back to movies list
         </a>
-        <a tooltip="Remove" class='btn btn-primary pull-right' (click)='onTrash()' style="margin-left:10px;">
-            <i class='glyphicon fa fa-trash'></i>
-        </a>
         <a tooltip="Edit" class='btn btn-primary pull-right' (click)='onEdit()'>
-            <i class='glyphicon fa fa-edit'></i>
+            <i class='glyphicon fa fa-edit'></i> Edit Movie
         </a>
     </div>
 </div>

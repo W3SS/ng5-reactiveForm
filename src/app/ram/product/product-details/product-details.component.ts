@@ -53,11 +53,13 @@ export class ProductDetailsComponent implements OnInit {
   onBack():void{
     this._router.navigate(['/product']);
   }
-  onTrash():void{
-    console.log('trash click');
-    console.log(this.rank);
-  }
+
   onEdit():void{
     this._router.navigate(['/product/edit', this.rank]);
+  }
+
+  addNewOne(){
+    console.log('yes add to one');
+    this._router.navigate(['/product/edit/0']);
   }
 }

@@ -35,7 +35,7 @@ function ratingRange(min: number, max: number): ValidatorFn {
 })
 export class RegisterClientComponent implements OnInit {
 
-  private clientMessage = {
+   clientMessage = {
     title: 'Client Registration Form',
     validationMessages:{
       firtName :{
